@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <FreeRTOS.h>
 
 // Use only core 1 for demo purposes
 #if CONFIG_FREERTOS_UNICORE
@@ -26,7 +27,7 @@ void setup() {
   pinMode(led_pin, OUTPUT);
 
   // Task to run forever
-  xTaskCreatePinnedToCore( 
+  xTaskCreate( 
     // Use xTaskCreate() in vanillia FreeRTOS
     toggleLed,    // Function to be called
     "Toggle LED", // Name of task
