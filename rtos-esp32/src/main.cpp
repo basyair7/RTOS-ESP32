@@ -27,7 +27,7 @@ void setup() {
   pinMode(led_pin, OUTPUT);
 
   // Task to run forever
-  xTaskCreate( 
+  xTaskCreatePinnedToCore( 
     // Use xTaskCreate() in vanillia FreeRTOS
     toggleLed,    // Function to be called
     "Toggle LED", // Name of task
