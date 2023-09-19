@@ -1,0 +1,31 @@
+#include <Arduino.h>
+
+#define pinLed1 10
+#define pinLed2 9
+
+unsigned long currentTime1 = 0, currentTime2 = 0;
+void setup() {
+  // put your setup code here, to run once:
+  pinMode(pinLed1, OUTPUT);
+  pinMode(pinLed2, OUTPUT);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  unsigned long millisMain = millis();
+  if((unsigned long) (currentTime1 - millisMain) >= 1000) {
+    currentTime1 = millisMain;
+    digitalWrite(pinLed1, HIGH);
+    delay(100);
+    digitalWrite(pinLed1, LOW);
+    delay(100);
+  }
+
+  if((unsigned long) (currentTime2 - millisMain) >= 100) {
+    currentTime2 = millisMain;
+    digitalWrite(pinLed2, HIGH);
+    delay(500);
+    digitalWrite(pinLed2, LOW);
+    delay(500);
+  }
+}
