@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"name": "rtos-esp32",
+			"path": "../rtos-esp32"
+		},
+		{
+			"name": "rtos-atmega328p",
+			"path": "."
+		}
+	],
+	"settings": {}
+}
