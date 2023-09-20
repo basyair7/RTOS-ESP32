@@ -23,7 +23,7 @@ void program1(void *pvParameter) {
     vTaskDelay(pdMS_TO_TICKS(100));
     digitalWrite(pinLed1, LOW);
     vTaskDelay(pdMS_TO_TICKS(100));
-    if(i > 100) {
+    if(i > 20) {
       Serial.println(F("Task 1 Stopped"));
       vTaskDelete(handleProgram1);
     }
