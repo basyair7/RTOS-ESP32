@@ -12,7 +12,7 @@ static const int led_pin = LED_BUILTIN;
 
 // Our task: blink an LED
 void toggleLed(void *parameter) {
-  while (1) {
+  while (true) {
     digitalWrite(led_pin, HIGH);
     vTaskDelay(500 / portTICK_PERIOD_MS);
     digitalWrite(led_pin, LOW);

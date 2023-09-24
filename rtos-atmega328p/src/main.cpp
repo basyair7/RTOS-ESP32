@@ -5,8 +5,6 @@
 #define pinLed1 10
 #define pinLed2 9
 
-void(*funcRestart)(void) = 0; // self restart program
-
 // Ukuran tumpukan (stack size) untuk masing-masing program
 static uint16_t STACK_SIZE = 256; // 256 byte 
 
@@ -16,6 +14,7 @@ TaskHandle_t handleProgram1, handleProgram2;
 // Deklarasi fungsi program
 void program1(void *pvParameter) {
   (void) pvParameter; // untuk menghindari warning tidak terpakai
+  pinMode(pinLed1, OUTPUT);
   int i = 1;
   while(true) {
     Serial.println(F("Task 1 Running"));
@@ -33,6 +32,7 @@ void program1(void *pvParameter) {
 
 void program2(void *pvParameter) {
   (void) pvParameter; // untuk menghindari warning tidak terpakai
+  pinMode(pinLed2, OUTPUT);
   int i = 1;
   while(true) {
     Serial.println(F("Task 2 Running"));
@@ -49,6 +49,7 @@ void program2(void *pvParameter) {
 }
 
 void RestartProgram(void *pvParameter) {
+  void(*funcRestart)(void) = 0; // self restart program
   while(true) {
     Serial.println(F("\n\n\n\nSelf Restart\n Bye...\n\n"));
     vTaskDelay(pdMS_TO_TICKS(30000));
@@ -59,9 +60,6 @@ void RestartProgram(void *pvParameter) {
 void setup() {
   // put your setup code here, to run once:
   Serial.begin(9600);
-
-  pinMode(pinLed1, OUTPUT);
-  pinMode(pinLed2, OUTPUT);
 
   // Buat task tiap fungsi program
   xTaskCreate(program1, "Program 1", STACK_SIZE, NULL, 1, &handleProgram1);
